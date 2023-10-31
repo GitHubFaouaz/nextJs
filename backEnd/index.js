@@ -15,7 +15,8 @@ app.post("/authenticate", async (req, res) => {
     );
     return res.status(resAxios.status).json(resAxios.data);
   } catch (e) {
-    return res.status(e.response.status).json(e.response.data);
+    return res.status(500).json({ message: "erreur du serveur" });
+    // return res.status(e.response.status).json(e.response.data);
   }
 });
 
