@@ -1,14 +1,14 @@
 import { createEnv } from "@t3-oss/env-nextjs";
-// import { z } from "zod";
- 
+import { z } from "zod";
+
 export const env = createEnv({
-  server:{
-
-    },
-  client: {
-    // PUBLIC_CLERK_PUBLISHABLE_KEY: z.string().min(1),
+  server: {
+    GITHUB_ID: z.string().min(1),
+    GITHUB_SECRET: z.string().min(1),
   },
-  runtimeEnv:{
-
+  client: {},
+  runtimeEnv: {
+    GITHUB_ID: process.env.GITHUB_ID,
+    GITHUB_SECRET: process.env.GITHUB_SECRET,
   },
 });
