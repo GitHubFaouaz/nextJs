@@ -24,7 +24,7 @@ export default function RootLayout({
        <ThemeProvider attribute="class" defaultTheme="system" enableSystem> 
         <div className="flex flex-col h-full">
           <Header/>
-            <div className="flex1 max-w-lg py-12 m-auto w-full">{children}</div>
+            <div className="flex-1 max-w-lg py-14 m-auto w-full">{children}</div>
            <Footer/>  
         </div>
       </ThemeProvider> 
@@ -33,6 +33,9 @@ export default function RootLayout({
       {/* Les attributs attribute, defaultTheme et enableSystem configurent le comportement du thème. */}
       {/* PERMET DE MODIFIER LE CSS AVEC BUTTONVARIANT, Applique des classes CSS en utilisant clsx pour ajouter la classe de la police et une classe de fond (bg-background). */}
       {/* Les metadata définissent les métadonnées de la page, telles que le titre et la description. */}
+        {/* attribute="class" : Utilise des classes pour gérer les thèmes.
+       defaultTheme="system" : Par défaut, utilise le thème système.
+       enableSystem : Active la détection des préférences système. */}
         </body>
     </html>
   );

@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 export default function Home() {
   return (
     <div>
-      <Button>clic 40:20</Button>
+      <Button>clic 46:20</Button>
       <Input />
     </div>
   );
