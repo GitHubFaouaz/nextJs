@@ -3,9 +3,9 @@ import { Input } from "@/components/ui/input";
 
 export default function Home() {
   return (
-     <div>
-      <Button>clic 27:0</Button>
-      <Input/>
-     </div>
+    <div>
+      <Button>clic 40:20</Button>
+      <Input />
+    </div>
   );
 }
