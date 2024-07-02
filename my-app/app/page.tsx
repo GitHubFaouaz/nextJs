@@ -4,6 +4,8 @@ import { getAuthSession } from "@/lib/auth";
 
 export default async function Home() {
   const session =  await getAuthSession();
+  // console.log('pageSession' ,JSON.stringify (session));
+
   return (
     <div>
       <p>{JSON.stringify(session,null,2)}</p>

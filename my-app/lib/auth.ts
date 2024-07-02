@@ -3,19 +3,8 @@ import { env } from "./env";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { prisma } from "./prisma";
 import { AuthOptions, getServerSession } from "next-auth";
-import { log } from "console";
 
 
-// export const authOptions : AuthOptions = {
-//   adapter: PrismaAdapter(prisma),
-//   providers: [
-//     GithubProvider({
-//       clientId: env.GITHUB_ID,
-//       clientSecret: env.GITHUB_SECRET,
-//     }),
-   
-//   ],
-// };
 
 export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -25,39 +14,22 @@ export const authOptions: AuthOptions = {
       clientSecret: env.GITHUB_SECRET,
     }),
   ],
-  // secret: env.NEXTAUTH_SECRET,
-  // session: {
-  //   strategy: "jwt",
-  // },
+  // on ajoute un id user 
   callbacks: {
       async session ({session, user}){
       if(!session.user)return session;
-      session.user.id = user.id
+      session.user.id = user.id// vu que le id nexiste pas de base on ajoute un code dans le fichier nextAuth.d.ts  puisque session envoi juste nom emailet image 
+      // console.log('callbackSession' , session)
       return  session 
     }
   },
-  // callbacks: {
-  //   async session({ session, token }) {
-  //     if (token?.id && session.user) {
-  //       session.user.id = token.id;
-  //     }
-  //     return session;
-  //   },
-  //   async jwt({ token, user }) {
-  //     if (user) {
-  //       token.id = user.id;
-  //     }
-  //     return token;
-  //   },
-  // },
-  // debug: true,
+
 };
 
 
-//on recupere  les informations sur githup (nom,mail,image)
+//on recupere  les informations sur githup (nom,mail,image) 
 export const getAuthSession = async ()=> {
   const session =  await getServerSession(authOptions);
- console.log(session);
  
   return session; 
 }
