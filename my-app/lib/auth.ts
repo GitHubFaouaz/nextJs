@@ -17,7 +17,8 @@ export const authOptions: AuthOptions = {
   // on ajoute un id user 
   callbacks: {
       async session ({session, user}){
-      if(!session.user)return session;
+      // if(!session.user)return session;
+      if(!session?.user)return session;// sil ny a pas de user retourne session sinon:
       session.user.id = user.id// vu que le id nexiste pas de base on ajoute un code dans le fichier nextAuth.d.ts  puisque session envoi juste nom emailet image 
       // console.log('callbackSession' , session)
       return  session 
