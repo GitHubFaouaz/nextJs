@@ -5,7 +5,7 @@ import { getAuthSession } from "@/lib/auth";
 export default async function Home() {
   // on recupere les informations 
   const session =  await getAuthSession();
-  // console.log('pageSession' ,JSON.stringify (session));
+  console.log('pageSession' ,JSON.stringify (session));
 
   return (
     <div>
