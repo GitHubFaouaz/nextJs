@@ -12,9 +12,15 @@ export const authOptions: AuthOptions = {
     GithubProvider({
       clientId: env.GITHUB_ID,
       clientSecret: env.GITHUB_SECRET,
-      profile(profile){ // profile de githup 
-        console.log({profile});
-        return{}
+      profile(profile){ //une fonction profile appellé avec le profile de githup 
+        console.log({profile}); //données sur le profile
+        return{
+          id : profile.id.toString(),
+          username : profile.login,
+          name: profile.name,
+          email : profile.email,
+         image : profile.avatar_url
+        }
         
       }
     }),
