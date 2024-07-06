@@ -12,6 +12,11 @@ export const authOptions: AuthOptions = {
     GithubProvider({
       clientId: env.GITHUB_ID,
       clientSecret: env.GITHUB_SECRET,
+      profile(profile){ // profile de githup 
+        console.log({profile});
+        return{}
+        
+      }
     }),
   ],
   // on ajoute un id user 

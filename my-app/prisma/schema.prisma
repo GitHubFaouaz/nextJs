@@ -1,5 +1,5 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// Apres modification faire prisma migrate dev 
+// il est parfois necessaire de supprimer la dev.db pour en faire une nouvelle 
 
 generator client {
   provider = "prisma-client-js"
@@ -55,4 +55,51 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  //ce quia été ajouté 
+  username      String //@unique peut provoquer un beug 
+  bio           String?
+  link          String?
+  createdAt     DateTime  @default(now())
+
+  follower Follow[] @relation("follower")
+  followed Follow[] @relation("followed")
+  posts    Post[]
+  likes    Like[]
+}
+
+model Follow {
+  id          String @id @default(cuid())
+  followerId  String // celui qui va follow 
+  followingId String // celui qu'on a follow 
+
+  createdAt DateTime @default(now()) //date de creation 
+
+  follower User @relation("follower", fields: [followerId], references: [id], onDelete: Cascade)
+  followed User @relation("followed", fields: [followingId], references: [id], onDelete: Cascade)
+  //  references: [id] le id du user qui a follow 
+  //  onDelete: Cascade) lors de la supppression du user on supprime aussi tous les follow quil a fait 
+  // on a fait la liaison entre : <follower Follow[]  @relation("follower")> et < follower User @relation("follower", fields: [followerId], references: [id], onDelete: Cascade) > et de meme pour lautre
+}
+
+model Post {
+  id       String  @id @default(cuid())
+  content  String
+  parentId String? // commentaire du poste
+  userId   String
+
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  likes     Like[]
+  replies   Post[]   @relation("comments")
+  parents   Post?    @relation("comments", fields: [parentId], references: [id], onDelete: Cascade)
+}
+
+model Like {
+  id        String   @id @default(cuid())
+  userId    String
+  postId    String
+  createdAt DateTime @default(now()) //date de creation 
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
 }
