@@ -22,7 +22,49 @@ const main = ()=>{
          users.push(dbUser)
     }
 
+    const posts =[]; // tableau qui contient tous les posts
+
     for(let i = 0 ; i<100; i++) {
-     
-    }
+      const rondomUserIndex = faker.number.int({
+        min:5,
+        max : users.length -1 ,
+    })
+    
+    const rondomWordCount = faker.number.int({
+        min:5,
+        max : 12 ,
+    })
+    
+    const post = {
+        content: faker.lorem.sentence(rondomWordCount),
+        userdId :  users[rondomUserIndex].id,
+    }satisfies Prisma.PostUncheckedCreateInput;
+
+    
+   const p =  await prisma.post.create({data:post})
+   posts.push(p)
+}
+
+  // creation de faux likes
+  for(let i = 0 ; i<100; i++) {
+    const rondomUserIndex = faker.number.int({
+      min:0,
+      max : users.length -1 ,
+  })
+  
+  const rondomPostIndex = faker.number.int({
+      min:0,
+      max : posts.length - 1,
+  })
+  
+  const like = {
+      content: faker.lorem.sentence(rondomPostIndex ),
+      userdId :  users[rondomUserIndex].id,
+  }satisfies Prisma.PostUncheckedCreateInput;
+
+  
+//  const p =  await prisma.post.create({data:post})
+//  posts.push(p)
+}
+  
 }

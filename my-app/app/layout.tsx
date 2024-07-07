@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+// import"./style.css";
 import { ThemeProvider } from "next-themes"; //Ce composant enveloppe son contenu dans NextThemeProvider,permettant ainsi l'utilisation des fonctionnalités de next-themes comme le changement de thème.
 import clsx from "clsx";// pour conditionner les classes CSS.
 import Header from "@/src/feature/layout/Header";

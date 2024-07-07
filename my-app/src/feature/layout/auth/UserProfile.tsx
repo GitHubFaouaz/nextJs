@@ -9,13 +9,13 @@ import LogOutButton from './LogoutButton';
 const UserProfile =  async() => {
     const session = await getAuthSession(); 
     return (
-      <DropdownMenu>
+      <DropdownMenu >
          <DropdownMenuTrigger asChild>{/* asChild vient supprimer DropdownMenuTrigger on a que le button  */}
             <Button size="sm" variant='outline'>
              {session?.user.name ?? ""}{/*  on affgiche un string sil n'existe pas  */}
             </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent>
+        </DropdownMenuTrigger >
+        <DropdownMenuContent className='contentMenu'>
             <DropdownMenuItem  asChild>
               <Link href={"/profile"}>
               <User2 className='mr-2 w-4 h-4' />
