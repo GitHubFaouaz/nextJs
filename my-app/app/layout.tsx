@@ -4,8 +4,8 @@ import "./globals.css";
 // import"./style.css";
 import { ThemeProvider } from "next-themes"; //Ce composant enveloppe son contenu dans NextThemeProvider,permettant ainsi l'utilisation des fonctionnalités de next-themes comme le changement de thème.
 import clsx from "clsx";// pour conditionner les classes CSS.
-import Header from "@/src/feature/layout/Header";
-import Footer from "@/src/feature/layout/Footer";
+import Header from "@/src/feature/Header";
+import Footer from "@/src/feature/Footer";
 
 const inter = Inter({ subsets: ["latin"] }); //Inter de next/font/google pour charger la police Google Inter.
 

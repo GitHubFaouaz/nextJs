@@ -79,3 +79,5 @@ main()
   
   // on install prisma studio pour avoir un etat global et detaillé des users posts .... : npx prisma studio
   // pour lancer la generation des faux users je lance le prisma seed du package.json avec : pnpm prisma:seed
+  // il faut installer ts-node si necessaire : pnpm install --save-dev ts-node
+  // ts-node est un outil qui permet d'exécuter du code TypeScript directement dans un environnement Node.js, sans avoir besoin de le compiler en JavaScript au préalable. Il est particulièrement utile pour les scripts et les outils de développement écrits en TypeScript.

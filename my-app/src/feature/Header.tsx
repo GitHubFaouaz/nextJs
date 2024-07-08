@@ -1,10 +1,9 @@
 
 import ThemeToggle from '@/src/theme/ThemeToggle';
 import React from 'react';
-import LoginButton from './auth/LoginButton';
-import { getServerSession } from 'next-auth';
+import LoginButton from './layout/auth/LoginButton';
 import { getAuthSession } from '@/lib/auth';
-import UserProfile from './auth/UserProfile';
+import UserProfile from './layout/auth/UserProfile';
 
 const Header = async () => {
     const session = await getAuthSession(); // on recupere les informations user
