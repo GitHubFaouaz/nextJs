@@ -1,6 +1,6 @@
 import { getAuthSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-
+// import { Prisma } from '@prisma/client';
 export default async function Home() {
 
   // on recupere les informations 
