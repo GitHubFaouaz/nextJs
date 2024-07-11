@@ -48,7 +48,7 @@ export default async function Home() {
   //    })
   const posts = await getLatesPosts()
   return (
-    <div>
+    <div className="divide-y divide-muted">
      {posts.map((p)=>(
       // <p key={p.id}>{p.id}</p>
       <Post post={p} key={p.id} />

@@ -40,3 +40,5 @@ const PostLayout = ({className,user,createdAt,postId,children}: PostLayoutProps)
 };
 
 export default PostLayout;
+
+// muted-foreground , card-foreground dans globalcss
