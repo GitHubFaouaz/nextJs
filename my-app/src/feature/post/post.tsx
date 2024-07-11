@@ -1,19 +1,25 @@
 import { PostHome } from '@/src/query/post.query';
 import React from 'react';
+import PostLayout from './postLayout';
+import Link from 'next/link';
 
 
 type postProps = {
    post: PostHome
 }
 
-const post = ({post} : postProps) => {
+const Post = ({post} : postProps) => {
     
-    const name = post.user.name
+    // const name = post.user.name 
     return (
-        <div>
-            post
-        </div>
+         <PostLayout user={post.user} postId={post.id} createdAt={post.createdAt}>
+            <Link href={`/posts/${post.id} `} className='text-sm text-foreground'>
+            {post.content}
+            </Link>
+        </PostLayout>
+            
+        
     );
 };
 
-export default post;
+export default Post;

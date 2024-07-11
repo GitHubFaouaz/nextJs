@@ -1,5 +1,7 @@
 import { getAuthSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import Post from "@/src/feature/post/post";
+import { getLatesPosts } from "@/src/query/post.query";
 // import { Prisma } from '@prisma/client';
 export default async function Home() {
 
@@ -8,46 +10,48 @@ export default async function Home() {
 //   console.log('pageSession' ,JSON.stringify (session));
 
 //s Cette partie utilise Prisma pour interroger la base de données et récupérer une liste de posts
-  const posts = await prisma.post.findMany({
+  // const posts = await prisma.post.findMany({
 
-      where : {
-        parentId:null
-        // Filtre pour ne récupérer que les posts qui n'ont pas de parent, c'est-à-dire les posts principaux.
-      },
+  //     where : {
+  //       parentId:null
+  //       // Filtre pour ne récupérer que les posts qui n'ont pas de parent, c'est-à-dire les posts principaux.
+  //     },
    
-      select : { //select: { ... }: Sélectionne les champs spécifiques à inclure dans le résultat.
-        id : true,
-        content : true,
-        createdAt :true,
-        user : { // Sélectionne des champs spécifiques de l'utilisateur qui a créé le post.
-              select: {
-                id: true ,
-                username:true,
-                image: true,
-              }
-        },
-        likes: { // Sélectionne des champs spécifiques des likes associés au post
-             select:{
-              userId :true,
-             },
-             where : { // Filtre pour ne récupérer que les likes de l'utilisateur courant (ou "error" s'il n'y a pas de session d'utilisateur).
-              userId: session?.user.id ?? "error"
-             }
-        },
-        _count : { // compte le nombre de like et replies  Compte les relations associées
-            select:{
-              likes:true, // Compte le nombre de likes et de réponses( replies ) pour chaque post.
-              replies :true,
-            }
-        }
+  //     select : { //select: { ... }: Sélectionne les champs spécifiques à inclure dans le résultat.
+  //       id : true,
+  //       content : true,
+  //       createdAt :true,
+  //       user : { // Sélectionne des champs spécifiques de l'utilisateur qui a créé le post.
+  //             select: {
+  //               id: true ,
+  //               username:true,
+  //               image: true,
+  //             }
+  //       },
+  //       likes: { // Sélectionne des champs spécifiques des likes associés au post
+  //            select:{
+  //             userId :true,
+  //            },
+  //            where : { // Filtre pour ne récupérer que les likes de l'utilisateur courant (ou "error" s'il n'y a pas de session d'utilisateur).
+  //             userId: session?.user.id ?? "error"
+  //            }
+  //       },
+  //       _count : { // compte le nombre de like et replies  Compte les relations associées
+  //           select:{
+  //             likes:true, // Compte le nombre de likes et de réponses( replies ) pour chaque post.
+  //             replies :true,
+  //           }
+  //       }
 
-      }
+  //     }
 
-     })
+  //    })
+  const posts = await getLatesPosts()
   return (
     <div>
      {posts.map((p)=>(
-      <p key={p.id}>{p.content}</p>
+      // <p key={p.id}>{p.id}</p>
+      <Post post={p} key={p.id} />
      ))}
 
      {/* {posts.map(p=> (
