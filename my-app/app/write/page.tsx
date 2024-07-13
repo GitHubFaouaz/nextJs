@@ -1,11 +1,16 @@
+import { getUser } from '@/src/query/user.query';
 import React from 'react';
+import WritePostForm from './writePotsForm';
 
-const page = () => {
+const write = async () => {
+
+    const usert = getUser()
+
     return (
-        <div>
-            write
-        </div>
+         <WritePostForm user={user} onSubmit={ async()=>{
+          "use server"
+         }}/>
     );
 };
 
-export default page;
+export default write; 
