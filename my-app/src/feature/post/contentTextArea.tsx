@@ -2,7 +2,7 @@
 
 import clsx from 'clsx';
 import { ChangeEvent, ComponentPropsWithoutRef, forwardRef, useRef } from 'react';
-
+//le contenu dun posts 
 export const ContentTextArea = forwardRef<
   HTMLTextAreaElement,
   ComponentPropsWithoutRef<'textarea'>
